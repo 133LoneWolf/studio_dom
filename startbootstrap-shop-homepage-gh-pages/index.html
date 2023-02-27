@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Studio Dom - Fechamento Contábil</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Header-->
+        <header class="bg-dark py-5" id="header_container">
+            <div class="container px-4 px-lg-5 my-0">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Studio Dom</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Fechamento Contábil</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Section-->
+        <section class="py-5">
+            <div class="card card_wd" id="date_task">
+                <div class="card-header">
+                    <div class="input-group">
+                        <div class="col">
+                            <p class="btn btn-secondary" 
+                            id="dateWindow_main" onclick="dateWindowSize(event)">ocultar grupo (1)</p>
+                        </div>
+                        <p class="input-group-text" id="basic-addon2">Selecione uma data: </p>
+                        <div class="col col-md-2">
+                            <input type="date" class="form-control" id="date_main">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="row g-3">
+                        <div class="row g-4" id="employees_main">
+                            <div class="col-md-4">
+                                <select id="func_main" class="form-select">
+                                    <option selected disabled>Funcionario:</option>
+                                    <option value="Angela">Angela</option>
+                                    <option value="Bernadette">Bernadette</option>
+                                    <option value="Beatriz">Beatriz</option>
+                                    <option value="Elma">Elma</option>
+                                    <option value="Fabiola">Fabiola</option>
+                                    <option value="José">José</option>
+                                    <option value="Kelly">Kelly</option>
+                                    <option value="Kimberly">Kimberly</option>
+                                    <option value="Lesley">Lesley</option>
+                                    <option value="Roberta">Roberta</option>
+                                </select>
+                            </div>
+    
+                            <div class="col-md-auto">
+                            <select id="servic_main" class="form-select">
+                                <option selected disabled>Categoria:</option>
+                                <option value="Cabelo_Fem">Cabelo - Feminino</option>
+                                <option value="Cabelo_Mas">Cabelo - Masculino</option>
+                                <option value="Depilacao">Depilação</option>
+                                <option value="Estetica">Estética</option>
+                                <option value="Extensao_cil">Extensão de cilios</option>
+                                <option value="Manicure">Manicure</option>
+                                <option value="Outros">Outros</option>
+                                <option value="Vale">Vale</option>
+                            </select>
+                            </div>
+    
+                            <div class="col-md-auto">
+                                <input type="number" aria-label="First name" 
+                                id="quant_main" class="form-control" placeholder=" Valor:">
+                            </div>
+                            
+                            <div class="col-md-auto">
+                                <button type="button" class="btn btn-dark">X</button>
+                            </div>
+                        </div>
+
+                        <div class="box" id="box_main">
+
+                        </div>
+                    
+                        <div class="col-12">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <p class="btn btn-primary"  id="add_employee_main" onclick="newEmployee(event)">Nova tarefa</p>
+                                <p class="btn btn-danger" id="clear_all_main"  onclick="clearAll(event)">Limpar tarefas</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="date_cont" id="date_cont">
+                
+            </div>
+
+            <div class="btn-group card_wd cont_hg" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-primary" id="new_date_task">Novo grupo</button>
+                <button type="button" class="btn btn-outline-primary" id="add"onclick="handleTable(event)">Realizar fechamento</button>
+                <!-- <button type="button" class="btn btn-outline-primary" id="export_btn" data-js="export-table">Exportar</button> -->
+            </div>
+        </section>
+        <div class="overlay_Task" id="overlay_Task"></div>
+
+        <div class="task_wrapper">
+            <div class="cont_table" id="cont_table">
+                <div class="table_box">
+                   <table class="table table-bordered">
+                         <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Tipo Serviço</th>
+                            <th scope="col">Data</th>
+                            <th scope="col">Valor total</th>
+                            <th scope="col">Valor funcionario</th>
+                            <th scope="col">Valor empresa</th>
+                          </tr>
+                        </thead>
+                        <tbody id="task_table">
+                            <!-- <tr class="tRowSet"> -->
+                        </tbody>
+                    </table>
+                </div>
+    
+                <div class="table_buttons">
+                    <div></div>
+                    <div class="buttons_container">
+                        <a class="btn btn-outline-primary" role="button" id="export_btn" data-js="export-table">exportar</a>
+                        <a class="btn btn-outline-primary" onclick="handleTable(event)" id="btn_table_edit">editar</a>
+                        <!-- <p class="btn_excel" onclick="handleTable(event)" id="btn_table_new">novo fechamento</p> -->
+                    </div>
+                </div>
+            </div>
+
+        <div class="card confirm_dialog" id="conf_dialog">
+            <h5 class="card-header">Aviso</h5>
+            <div class="card-body">
+              <!-- <h5 class="card-title">Special title treatment</h5> -->
+              <p class="card-text" id="alert_p"></p>
+              <!-- <p class="btn btn-primary" onclick="handleTable(event)">Go somewhere</p> -->
+              <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <button type="button" class="btn btn-outline-danger" id="dialog_btn1" onclick="handleTable(event)">Cancelar</button>
+                <button type="button" class="btn btn-outline-primary" id="dialog_btn2" onclick="RealizarFechamento()">Prosseguir</button>
+              </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/main.js"></script>
+    </body>
+</html>
